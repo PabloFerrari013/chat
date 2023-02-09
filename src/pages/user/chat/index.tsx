@@ -48,7 +48,7 @@ export default function Chat() {
       <Header />
 
       <Flex as="main" bg="gray.800">
-        <Flex maxW="1024px" w="100%" mx="auto">
+        <Flex maxW="1024px" w="100%" mx="auto" px={['0', '0', '2em', '0']}>
           {session ? (
             <>
               <Contacts

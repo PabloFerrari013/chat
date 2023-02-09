@@ -46,8 +46,6 @@ const Chat: React.FC<ChatProps> = ({
   const socket = useSocket()
 
   socket?.on('messages', (data: Message[]) => {
-    console.log(data)
-
     setMessages([...data])
     setLoading(false)
     setMessageLoading(false)
@@ -74,6 +72,7 @@ const Chat: React.FC<ChatProps> = ({
           py="2em"
           alignItems="center"
           justifyContent="center"
+          bg="#202737"
         >
           <Text color="gray.100" fontWeight="bold" fontSize="1.5em">
             Inicie uma conversa! 🤗

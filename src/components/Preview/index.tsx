@@ -15,13 +15,14 @@ const Preview: React.FC = () => {
       h="calc(100vh - 7.1em)"
       display={['none', 'none', 'flex']}
       direction="column"
-      borderRight="2px solid"
       w="100%"
       alignItems="center"
       justifyContent="center"
       background="radial-gradient(circle, #202733 0%, rgba(26,32,44,1) 85%);"
       px="2em"
       textAlign="center"
+      borderLeft={['2px solid']}
+      borderColor="gray.700"
     >
       <Text color="gray.100" fontWeight="bold" fontSize="2em">
         Inicie uma conversa, {` `}

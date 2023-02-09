@@ -1,8 +1,10 @@
 import { useSession } from '@/hooks/useSession'
 import { useSocket } from '@/hooks/useSocket'
-import { Flex, IconButton, Textarea } from '@chakra-ui/react'
+import { Flex, IconButton, Input, Textarea } from '@chakra-ui/react'
 import React, { Dispatch, SetStateAction, useState } from 'react'
+import { BiImage } from 'react-icons/bi'
 import { IoMdSend } from 'react-icons/io'
+import ButtonFile from '../ButtonFile'
 
 interface User {
   id: string
@@ -34,7 +36,9 @@ const ChatBox: React.FC<ChatBoxProps> = ({ activeUser, setMessageLoading }) => {
   }
 
   return (
-    <Flex gap="0.5em" alignItems="center" py="1em" px="1em">
+    <Flex gap="0.5em" alignItems="center" py="0.5em" px={['1em', '1em', '0']}>
+      <ButtonFile />
+
       <Textarea
         placeholder="Digite sua mensagem"
         w="100%"
@@ -52,13 +56,19 @@ const ChatBox: React.FC<ChatBoxProps> = ({ activeUser, setMessageLoading }) => {
       />
 
       <IconButton
-        colorScheme="transparent"
+        bg="gray.700"
+        h="100%"
+        px="0.5em"
+        rounded="md"
+        alignItems="center"
+        justifyContent="center"
         aria-label="Send"
         icon={<IoMdSend />}
-        rounded="md"
         fontSize="2em"
         size="sm"
+        color="gray.100"
         onClick={() => handleSubmitMessage()}
+        _hover={{ bg: 'gray.700' }}
       />
     </Flex>
   )

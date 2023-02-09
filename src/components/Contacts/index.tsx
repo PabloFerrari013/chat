@@ -44,7 +44,7 @@ const Contacts: React.FC<ContactsProps> = ({
   function handleClick(user: User) {
     if (!session || !socket) return
 
-    socket?.emit('read', { currentUser: session?.email, otherUser: user.email })
+    socket.emit('read', { currentUser: session.email, otherUser: user.email })
 
     setLoading(true)
     setActiveUser(user)
@@ -62,8 +62,7 @@ const Contacts: React.FC<ContactsProps> = ({
       ]}
       h="calc(100vh - 7.1em)"
       overflowY="auto"
-      pl="2em"
-      pr="1em"
+      pr={['2em', '2em', '1em']}
       css={{
         '&::-webkit-scrollbar': {
           width: '0px'
@@ -75,8 +74,6 @@ const Contacts: React.FC<ContactsProps> = ({
           background: 'transparent'
         }
       }}
-      borderRight={['2px solid']}
-      borderColor="gray.700"
     >
       <Flex w="100%" direction="column">
         <Flex as="ul" direction="column">
