@@ -15,10 +15,24 @@ interface User {
   photoURL: string
 }
 
+interface Message {
+  data: {
+    to: string
+    from: string
+    key: string
+    id: string
+    message: string
+    timestamp: string
+    visualized: boolean
+  }
+}
+
 export default function Chat() {
   const { session } = useSession()
   const [activeUser, setActiveUser] = useState<User | null>(null)
   const socket = useSocket()
+  const [loading, setLoading] = useState(true)
+  const [messages, setMessages] = useState<Message[]>([])
 
   socket?.on('check', (user: string) => {
     if (activeUser?.email === user) {
@@ -41,10 +55,19 @@ export default function Chat() {
                 activeUser={activeUser}
                 setActiveUser={setActiveUser}
                 users={session.contacts}
+                setLoading={setLoading}
+                setMessages={setMessages}
               />
 
               {activeUser ? (
-                <C activeUser={activeUser} setActiveUser={setActiveUser} />
+                <C
+                  activeUser={activeUser}
+                  setActiveUser={setActiveUser}
+                  loading={loading}
+                  setLoading={setLoading}
+                  messages={messages}
+                  setMessages={setMessages}
+                />
               ) : (
                 <Preview />
               )}

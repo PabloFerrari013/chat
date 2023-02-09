@@ -11,24 +11,41 @@ interface User {
   photoURL: string
 }
 
+interface Message {
+  data: {
+    to: string
+    from: string
+    key: string
+    id: string
+    message: string
+    timestamp: string
+    visualized: boolean
+  }
+}
+
 interface ContactsProps {
   activeUser: User | null
   setActiveUser: Dispatch<SetStateAction<User | null>>
   users: User[]
+  setLoading: Dispatch<SetStateAction<boolean>>
+  setMessages: Dispatch<SetStateAction<Message[]>>
 }
 
 const Contacts: React.FC<ContactsProps> = ({
   activeUser,
   setActiveUser,
-  users
+  users,
+  setLoading,
+  setMessages
 }) => {
   const socket = useSocket()
   const { session } = useSession()
 
   function handleClick(user: User) {
     socket?.emit('read', { currentUser: session?.email, otherUser: user.email })
-
+    setLoading(true)
     setActiveUser(user)
+    setMessages([])
   }
 
   return (

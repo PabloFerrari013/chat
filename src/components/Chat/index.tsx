@@ -13,11 +13,6 @@ interface User {
   photoURL: string
 }
 
-interface ChatProps {
-  activeUser: User | null
-  setActiveUser: Dispatch<SetStateAction<User | null>>
-}
-
 interface Message {
   data: {
     to: string
@@ -30,11 +25,25 @@ interface Message {
   }
 }
 
-const Chat: React.FC<ChatProps> = ({ activeUser, setActiveUser }) => {
+interface ChatProps {
+  activeUser: User | null
+  setActiveUser: Dispatch<SetStateAction<User | null>>
+  loading: boolean
+  setLoading: Dispatch<SetStateAction<boolean>>
+  messages: Message[]
+  setMessages: Dispatch<SetStateAction<Message[]>>
+}
+
+const Chat: React.FC<ChatProps> = ({
+  activeUser,
+  setActiveUser,
+  loading,
+  setLoading,
+  messages,
+  setMessages
+}) => {
   const [messageLoading, setMessageLoading] = useState(false)
   const socket = useSocket()
-  const [messages, setMessages] = useState<Message[]>([])
-  const [loading, setLoading] = useState(true)
 
   socket?.on('messages', (data: Message[]) => {
     setMessages([...data])
