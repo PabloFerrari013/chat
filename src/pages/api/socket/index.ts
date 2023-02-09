@@ -62,8 +62,6 @@ const ioHandler = (req: NextApiRequest, res: any) => {
       })
 
       socket.on('read', async ({ currentUser, otherUser }: Read) => {
-        console.log('##################### READ #####################')
-
         otherRoom = otherUser
 
         await UpdateMessage({ currentUser, otherUser })

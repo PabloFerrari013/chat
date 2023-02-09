@@ -42,7 +42,7 @@ const Contacts: React.FC<ContactsProps> = ({
   const { session } = useSession()
 
   function handleClick(user: User) {
-    if (!session && !socket) return
+    if (!session || !socket) return
 
     socket?.emit('read', { currentUser: session?.email, otherUser: user.email })
 
