@@ -46,6 +46,8 @@ const Chat: React.FC<ChatProps> = ({
   const socket = useSocket()
 
   socket?.on('messages', (data: Message[]) => {
+    console.log(data)
+
     setMessages([...data])
     setLoading(false)
     setMessageLoading(false)
